@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plática Kids – Game 1 Layout</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, #fff6df 0%, #f6fbff 100%);
+      color: #222;
+    }
+
+    .page {
+      max-width: 1300px;
+      margin: 0 auto;
+      min-height: 100vh;
+      padding: 18px;
+      display: grid;
+      grid-template-rows: auto auto 1fr auto;
+      gap: 16px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .titlebox {
+      background: white;
+      border: 4px solid #f4a63a;
+      border-radius: 18px;
+      padding: 14px 18px;
+      box-shadow: 0 6px 18px rgba(0,0,0,.08);
+    }
+
+    .titlebox h1 {
+      margin: 0;
+      font-size: clamp(1.4rem, 2vw, 2.2rem);
+      color: #d86a00;
+    }
+
+    .titlebox p {
+      margin: 6px 0 0;
+      font-size: 1rem;
+    }
+
+    .scorebox {
+      background: #fff;
+      border: 4px solid #4aa3df;
+      border-radius: 18px;
+      padding: 12px 18px;
+      min-width: 220px;
+      text-align: center;
+      box-shadow: 0 6px 18px rgba(0,0,0,.08);
+    }
+
+    .scorebox .label {
+      font-size: .95rem;
+      font-weight: 700;
+      color: #2d6f9f;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+
+    .scorebox .score {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-top: 4px;
+    }
+
+    .main {
+      display: grid;
+      grid-template-columns: 140px 1fr 140px;
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .side {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .mini-card {
+      background: white;
+      border: 3px solid #d7d7d7;
+      border-radius: 18px;
+      min-height: 160px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,.06);
+      text-align: center;
+    }
+
+    .mini-card .thumb {
+      width: 74px;
+      height: 74px;
+      border-radius: 16px;
+      background: #f3f3f3;
+      border: 2px dashed #bbb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+
+    .mini-card strong {
+      font-size: .95rem;
+    }
+
+    .center {
+      background: rgba(255,255,255,.72);
+      border: 4px solid #f0d79d;
+      border-radius: 26px;
+      padding: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.08);
+      display: grid;
+      grid-template-rows: auto auto 1fr auto;
+      gap: 16px;
+    }
+
+    .prompt {
+      text-align: center;
+      background: #fff;
+      border-radius: 18px;
+      padding: 12px;
+      border: 3px solid #ffd27a;
+    }
+
+    .prompt .big {
+      font-size: clamp(1.5rem, 3vw, 2.6rem);
+      font-weight: 800;
+      color: #cf5d00;
+    }
+
+    .prompt .small {
+      margin-top: 6px;
+      font-size: 1rem;
+    }
+
+    .people-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      align-items: end;
+    }
+
+    .person-card {
+      background: white;
+      border-radius: 22px;
+      padding: 14px;
+      border: 4px solid #e1e1e1;
+      min-height: 280px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 6px 16px rgba(0,0,0,.07);
+      position: relative;
+    }
+
+    .person-card.main-boy { border-color: #6db8f2; }
+    .person-card.main-girl { border-color: #f39ac7; }
+    .person-card.teacher { border-color: #f0bb54; }
+
+    .person-card .figure {
+      width: 140px;
+      height: 180px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, #f7f7f7, #ececec);
+      border: 2px dashed #bcbcbc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      margin: 6px 0 10px;
+    }
+
+    .person-card .line1 {
+      font-size: 1.25rem;
+      font-weight: 800;
+    }
+
+    .person-card .line2 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #d05e00;
+      margin-top: 4px;
+    }
+
+    .teacher .line2 { color: #9b5d00; }
+
+    .pointer {
+      position: absolute;
+      right: 10px;
+      top: 14px;
+      font-size: 2rem;
+      color: #d87b00;
+    }
+
+    .objects-row {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 12px;
+    }
+
+    .object-card {
+      background: white;
+      border: 3px solid #d8e8f8;
+      border-radius: 18px;
+      padding: 10px;
+      min-height: 120px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,.05);
+      cursor: pointer;
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+
+    .object-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0,0,0,.09);
+    }
+
+    .object-card .icon {
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+
+    .object-card .word {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #1b5f8f;
+    }
+
+    .bottom-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .points {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .pt {
+      border: none;
+      border-radius: 12px;
+      background: #fff;
+      border: 2px solid #f4a63a;
+      padding: 10px 14px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .navbtn {
+      border: none;
+      border-radius: 16px;
+      padding: 14px 20px;
+      font-size: 1rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 6px 16px rgba(0,0,0,.08);
+    }
+
+    .back { background: #fff; color: #555; border: 2px solid #ccc; }
+    .next { background: #f28d19; color: #fff; }
+
+    .footer-note {
+      text-align: center;
+      color: #666;
+      font-size: .95rem;
+      padding-bottom: 8px;
+    }
+
+    @media (max-width: 1000px) {
+      .main {
+        grid-template-columns: 1fr;
+      }
+      .side {
+        flex-direction: row;
+      }
+      .people-row {
+        grid-template-columns: 1fr;
+      }
+      .objects-row {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .objects-row {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .side {
+        flex-direction: column;
+      }
+      .bottom-bar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .points {
+        justify-content: center;
+      }
+      .navbtn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="topbar">
+      <div class="titlebox">
+        <h1>Plática Kids – Game 1</h1>
+        <p>Only two people words to learn: <strong>yo</strong> and <strong>usted</strong>.</p>
+      </div>
+      <div class="scorebox">
+        <div class="label">My Score</div>
+        <div class="score">0 / 100</div>
+      </div>
+    </div>
+
+    <div class="main">
+      <div class="side">
+        <div class="mini-card">
+          <div class="thumb">🙂</div>
+          <strong>María</strong>
+          <div>Click for an easy phrase</div>
+        </div>
+        <div class="mini-card">
+          <div class="thumb">🙂</div>
+          <strong>Pablo</strong>
+          <div>Click for an easy phrase</div>
+        </div>
+      </div>
+
+      <div class="center">
+        <div class="prompt">
+          <div class="big">Yo como / Usted come</div>
+          <div class="small">Click a person, then click an object.</div>
+        </div>
+
+        <div class="people-row">
+          <div class="person-card main-boy">
+            <div class="figure">🧒</div>
+            <div class="line1">Boy</div>
+            <div class="line2">YO</div>
+          </div>
+
+          <div class="person-card teacher">
+            <div class="pointer">👉</div>
+            <div class="figure">👩</div>
+            <div class="line1">Teacher</div>
+            <div class="line2">USTED</div>
+          </div>
+
+          <div class="person-card main-girl">
+            <div class="figure">👧</div>
+            <div class="line1">Girl</div>
+            <div class="line2">USTED</div>
+          </div>
+        </div>
+
+        <div class="objects-row">
+          <div class="object-card"><div class="icon">🌮</div><div class="word">taco</div></div>
+          <div class="object-card"><div class="icon">🎩</div><div class="word">sombrero</div></div>
+          <div class="object-card"><div class="icon">🍎</div><div class="word">manzana</div></div>
+          <div class="object-card"><div class="icon">🥤</div><div class="word">refresco</div></div>
+          <div class="object-card"><div class="icon">🍞</div><div class="word">pan</div></div>
+          <div class="object-card"><div class="icon">🍇</div><div class="word">uvas</div></div>
+        </div>
+
+        <div class="bottom-bar">
+          <div class="points">
+            <button class="pt">+1</button>
+            <button class="pt">+2</button>
+            <button class="pt">+5</button>
+            <button class="pt">+10</button>
+          </div>
+
+          <button class="navbtn next">➡ Next Door / Game 2</button>
+        </div>
+      </div>
+
+      <div class="side">
+        <div class="mini-card">
+          <div class="thumb">🚪</div>
+          <strong>Game Door</strong>
+          <div>Arrow points to next game</div>
+        </div>
+        <div class="mini-card">
+          <div class="thumb">⭐</div>
+          <strong>Good Job!</strong>
+          <div>Keep your own honest score</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-note">Simple, friendly, and repeatable — built for children to succeed fast.</div>
+  </div>
+</body>
+</html>
