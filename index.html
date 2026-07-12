@@ -1,12 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sound Spanish</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plática for Kids</title>
+
+  <!--
+    TEMPORARY SIMPLE ENTRANCE
+    For now, the website goes directly to Plática for Kids.
+    The adult/kids doors can be added again later.
+  -->
+  <meta http-equiv="refresh" content="0; url=./kids_only/game1.html" />
+
+  <script>
+    window.location.replace("./kids_only/game1.html");
+  </script>
+
+  <style>
+    html, body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      font-family: Arial, sans-serif;
+      background: #f4ead8;
+      color: #3d2b1f;
+      text-align: center;
+    }
+
+    .message {
+      padding: 24px;
+    }
+
+    a {
+      color: #8b4513;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
-  <h1>Sound Spanish</h1>
-  <p>Plática for Kids is under construction. July 12 2026</p>
+  <div class="message">
+    <h1>Plática for Kids</h1>
+    <p>Opening the program…</p>
+    <p>
+      <a href="./kids_only/game1.html">Tap here if it does not open automatically.</a>
+    </p>
+  </div>
 </body>
 </html>
