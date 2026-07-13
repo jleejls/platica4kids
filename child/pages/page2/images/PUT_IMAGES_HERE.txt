@@ -1,1 +1,0 @@
-Place page 2 JPG images in this folder, then point details.js to them. Shared temporary boy/girl images are currently used.

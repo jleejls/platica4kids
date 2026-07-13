@@ -1,0 +1,60 @@
+{
+  "gameId": "game1",
+  "title": "Comer",
+  "folders": {
+    "images": "images/",
+    "audios": "audios/",
+    "background": "background/"
+  },
+  "characters": [
+    {
+      "id": "boy",
+      "name": "Boy",
+      "image": "images/boy.jpg",
+      "position": "left",
+      "faces": "right"
+    },
+    {
+      "id": "girl",
+      "name": "Girl",
+      "image": "images/girl.jpg",
+      "position": "right",
+      "faces": "left"
+    }
+  ],
+  "objects": [
+    {
+      "id": "taco",
+      "image": "images/taco.jpg",
+      "boyAudio": "audios/boy/i-eat-a-taco.m4a",
+      "girlAudio": "audios/girl/i-eat-a-taco.m4a",
+      "boyPhrase": "I eat a taco.",
+      "girlPhrase": "I eat a taco."
+    },
+    {
+      "id": "burrito",
+      "image": "images/burrito.jpg",
+      "boyAudio": "audios/boy/i-eat-a-burrito.m4a",
+      "girlAudio": "audios/girl/i-eat-a-burrito.m4a",
+      "boyPhrase": "I eat a burrito.",
+      "girlPhrase": "I eat a burrito."
+    },
+    {
+      "id": "apple",
+      "image": "images/apple.jpg",
+      "boyAudio": "audios/boy/i-eat-an-apple.m4a",
+      "girlAudio": "audios/girl/i-eat-an-apple.m4a",
+      "boyPhrase": "I eat an apple.",
+      "girlPhrase": "I eat an apple."
+    }
+  ],
+  "environment": {
+    "backgroundImage": "background/game1-room.jpg",
+    "roomName": "Game 1 Room",
+    "objectPlacement": "edges",
+    "characterPlacement": {
+      "boy": "left",
+      "girl": "right"
+    }
+  }
+}
