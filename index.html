@@ -1,82 +1,124 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Entrance</title>
-<h2>Jimmy was here </h2>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Plática</title>
   <style>
-    html, body {
-      margin: 0;
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
       width: 100%;
       height: 100%;
+      margin: 0;
+      background: #111;
       overflow: hidden;
-      background: #000;
     }
 
-    .screen {
+    body {
+      display: grid;
+      place-items: center;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .entrance {
       position: relative;
-      width: 100vw;
-      height: 100vh;
-      background-image: url("./Entrances/p1.png");
-      background-repeat: no-repeat;
-      background-position: center center;
-      background-size: cover;
+      width: min(100vw, 100vh);
+      aspect-ratio: 1 / 1;
+      background: #111;
     }
 
-    .door {
+    .entrance-image {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .door-link {
       position: absolute;
+      z-index: 2;
+      display: block;
+      border-radius: 1rem;
       cursor: pointer;
-      background: rgba(255, 0, 0, 0); /* invisible */
+      -webkit-tap-highlight-color: transparent;
     }
 
-    /* LEFT DOOR */
-    .door-left {
-      left: .2%;
-      top: .5%;
-      width: 45%;
-      height: 89%;
+    /* Left door: Adult program */
+    .adult-door {
+      left: 12.5%;
+      top: 7.5%;
+      width: 28.5%;
+      height: 76.5%;
     }
 
-    /* RIGHT DOOR */
-    .door-right {
-      left: 56%;
-      top: 5%;
-      width: 27%;
-      height: 77%;
+    /* Right door: Child program */
+    .child-door {
+      left: 61.5%;
+      top: 7.5%;
+      width: 26.5%;
+      height: 76.5%;
     }
 
-    /* TEMPORARY TEST MODE
-       Turn opacity on while lining up the doors, then set back to 0.
-    */
-    /*
-    .door-left  { background: rgba(255, 0, 0, 0.20); }
-    .door-right { background: rgba(0, 0, 255, 0.20); }
-    */
+    .door-link:focus-visible {
+      outline: 5px solid #fff;
+      outline-offset: -5px;
+      background: rgba(255, 255, 255, 0.12);
+    }
 
-    /* Optional subtle hover outline */
-    .door:hover {
-      outline: 4px solid rgba(255, 140, 0, 0.45);
-      outline-offset: -2px;
+    @media (hover: hover) {
+      .door-link:hover {
+        background: rgba(255, 255, 255, 0.08);
+        box-shadow: inset 0 0 0 4px rgba(255, 255, 255, 0.75);
+      }
     }
   </style>
 </head>
 <body>
+  <main class="entrance" aria-label="Choose a Plática program">
+    <img
+      class="entrance-image"
+      src="assets/images/entrance.jpg"
+      alt="Two entrance doors: the adult program is on the left and Plática V3 is on the right."
+    >
 
-  <div class="screen">
-    <div class="door door-left" onclick="goLeftDoor()"></div>
-    <div class="door door-right" onclick="goRightDoor()"></div>
-  </div>
+    <a
+      class="door-link adult-door"
+      href="adult/platicav3/placeholder.html"
+      aria-label="Enter the adult Plática program"
+      title="Adult Plática"
+    ></a>
+
+    <a
+      class="door-link child-door"
+      href="child/desktop/structure.html"
+      id="childDoor"
+      aria-label="Enter Plática V3"
+      title="Plática V3"
+    ></a>
+  </main>
 
   <script>
-    function goLeftDoor() {
-      window.location.href = "./platicar/adult.html";
-    }
+    (function () {
+      const childDoor = document.getElementById('childDoor');
 
-    function goRightDoor() {
-      window.location.href = "./kids_only/game1.html";
-    }
+      childDoor.addEventListener('click', function (event) {
+        event.preventDefault();
+
+        const isPhone =
+          window.matchMedia('(max-width: 700px)').matches ||
+          /Android|iPhone|iPod|Mobile/i.test(navigator.userAgent);
+
+        const lane = isPhone ? 'phone' : 'desktop';
+        sessionStorage.setItem('kidsLane', lane);
+        window.location.href = 'child/' + lane + '/structure.html';
+      });
+    })();
   </script>
-
 </body>
 </html>
